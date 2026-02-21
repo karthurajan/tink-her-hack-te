@@ -2,27 +2,33 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# ReliefNet 🎯
 
-## Basic Details
+## basic details: a disaster relief management platform for emergency assurance and fulfilling needs
+
 
 ### Team Name: [Name]
 
 ### Team Members
-- Member 1: [Name] - [College]
+- Member 1: [karthu Rajan] - [College of engineering attingal]
 - Member 2: [Name] - [College]
 
 ### Hosted Project Link
 [mention your project hosted link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+ReliefNet is a comprehensive disaster relief management platform designed to coordinate emergency responses in real-time. It provides a unified command center for citizens to report incidents, while allowing volunteers and authorities to coordinate resources, manage shelters, and track relief activities efficiently.
 
 ### The Problem statement
-[What problem are you solving?]
+During disasters, fragmented communication and a lack of real-time data often lead to delayed rescue efforts and inefficient resource distribution. Affected citizens struggle to report emergencies reliably, and relief organizations face challenges in coordinating volunteers and tracking supplies.
 
 ### The Solution
-[How are you solving it?]
+ReliefNet solves these issues by providing:
+- **Real-time Incident Reporting**: Citizens can report emergencies with location data and media attachments.
+- **SOS System**: A critical alert mechanism that triggers automated SOS responses and SMS notifications.
+- **Unified Dashboard**: A command center for authorities to monitor incidents, track resources, and assign volunteers.
+- **Resource Management**: Tracking of inventory (food, water, medical supplies) and shelter capacities.
+- **Volunteer Coordination**: A centralized database to manage volunteer availability and skills.
 
 ---
 
@@ -31,25 +37,22 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
-
-**For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+- Languages used: JavaScript, Python, HTML, CSS
+- Frameworks used: Flask
+- Libraries used: Werkzeug (for file handling), SQLite3
+- Tools used: Antigravity AI, Git, GitHub
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: **SOS Alert System** - Instant emergency signal transmission with automated SMS triggering for mobile users.
+- Feature 2: **Real-time Incident Reporting** - Dynamic incident logging with location auto-detection and media upload capabilities.
+- Feature 3: **Command Dashboard** - Real-time monitoring of critical alerts, active incidents, and resource deployment levels.
+- Feature 4: **Inventory & Resource Tracking** - Automated tracking of relief supplies across various categories (Medical, Food, etc.).
+- Feature 5: **Shelter Management** - Real-time occupancy tracking for relief camps and shelters.
+- Feature 6: **Volunteer Network** - Centralized management of volunteer skills and availability status.
 
 ---
 
@@ -59,21 +62,20 @@ List the key features of your project:
 
 #### Installation
 ```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
+# Clone the repository
+git clone [repository-url]
+cd tink-her-hack-temp
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
 #### Run
 ```bash
-[Run commands - e.g., npm start, python app.py]
+# Start the Flask server
+python app.py
 ```
-
-### For Hardware:
-
-#### Components Required
-[List all components needed with specifications]
-
-#### Circuit Setup
-[Explain how to set up the circuit]
+Access the application at `http://localhost:5000`
 
 ---
 
@@ -83,51 +85,26 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Home View](./img.png)
+*Hero section with real-time statistics and quick actions*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Dashboard](docs/dashboard.png)
+*Command center showing incident logs and resource status*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![Report Incident](docs/report.png)
+*Emergency reporting form with geolocation support*
 
 #### Diagrams
 
 **System Architecture:**
 
 ![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
+*user registration -> disaster reporting -> resource management -> volunteer assignment -> status tracking*
 
 **Application Workflow:**
 
 ![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
-
----
-
-### For Hardware:
-
-#### Schematic & Circuit
-
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-#### Build Photos
-
-![Team](Add photo of your team here)
-
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
+*Citizen reports incident -> System logs in DB -> Authority assigns volunteer -> Status update*
 
 ---
 
@@ -137,224 +114,54 @@ List the key features of your project:
 
 #### API Documentation
 
-**Base URL:** `https://api.yourproject.com`
+**Base URL:** `http://localhost:5000`
 
 ##### Endpoints
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
+**GET /api/stats**
+- **Description:** Returns real-time statistics for the dashboard (volunteers, camps, resources).
 - **Response:**
 ```json
 {
-  "status": "success",
-  "data": {}
+  "active_incidents": 5,
+  "camps": 3,
+  "critical_alerts": 2,
+  "resources": "3.2k+",
+  "resolved_24h": 10,
+  "volunteers": 1205
 }
 ```
 
-**POST /api/endpoint**
-- **Description:** [What it does]
+**POST /api/incidents**
+- **Description:** Reports a new incident. Supports both JSON and multipart/form-data for media uploads.
 - **Request Body:**
 ```json
 {
-  "field1": "value1",
-  "field2": "value2"
+  "type": "flood",
+  "severity": "high",
+  "location": "34.0522, -118.2437",
+  "description": "Rising water levels near bridge"
 }
 ```
 - **Response:**
 ```json
 {
-  "status": "success",
-  "message": "Operation completed"
+  "id": 12,
+  "message": "Incident reported successfully"
 }
 ```
 
-[Add more endpoints as needed...]
+**GET /api/incidents**
+- **Description:** Retrieves a list of the 50 most recent incidents.
 
----
+**GET /api/inventory**
+- **Description:** Retrieves the current supply inventory status.
 
-### For Mobile Apps:
+**GET /api/volunteers**
+- **Description:** Retrieves a list of volunteers and their availability.
 
-#### App Flow Diagram
-
-![App Flow](docs/app-flow.png)
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
-
----
-
-### For Hardware Projects:
-
-#### Bill of Materials (BOM)
-
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
-
-**Total Estimated Cost:** ₹[Amount]
-
-#### Assembly Instructions
-
-**Step 1: Prepare Components**
-1. Gather all components listed in the BOM
-2. Check component specifications
-3. Prepare your workspace
-![Step 1](images/assembly-step1.jpg)
-*Caption: All components laid out*
-
-**Step 2: Build the Power Supply**
-1. Connect the power rails on the breadboard
-2. Connect Arduino 5V to breadboard positive rail
-3. Connect Arduino GND to breadboard negative rail
-![Step 2](images/assembly-step2.jpg)
-*Caption: Power connections completed*
-
-**Step 3: Add Components**
-1. Place LEDs on breadboard
-2. Connect resistors in series with LEDs
-3. Connect LED cathodes to GND
-4. Connect LED anodes to Arduino digital pins (2-6)
-![Step 3](images/assembly-step3.jpg)
-*Caption: LED circuit assembled*
-
-**Step 4: [Continue for all steps...]**
-
-**Final Assembly:**
-![Final Build](images/final-build.jpg)
-*Caption: Completed project ready for testing*
-
----
-
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-```bash
-python script.py [options] [arguments]
-```
-
-**Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
-
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-**Input:**
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-**Command:**
-```bash
-python script.py sample.txt
-```
-
-**Output:**
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
+**GET /api/shelters**
+- **Description:** Retrieves information about relief camps and their occupancy.
 
 ---
 
@@ -363,7 +170,7 @@ python script.py -v --format json data.json
 ### Video
 [Add your demo video link here - YouTube, Google Drive, etc.]
 
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+*ReliefNet feature walkthrough including the command center dashboard, incident reporting flow, and the emergency SOS system.*
 
 ### Additional Demos
 [Add any extra demo materials/links - Live site, APK download, online demo, etc.]
@@ -374,46 +181,37 @@ python script.py -v --format json data.json
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+**Tool Used:** sqlite
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+**Purpose:** 
+- Architectural planning and backend/frontend integration assistance.
+- Automated code refactoring and bug fixing.
+- Documentation generation and README completion.
 
 **Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+- "Fill unfilled data in README of project"
+- "Analyze project structure and generate API documentation"
+- "Refine the SOS system for mobile responsiveness"
 
-**Percentage of AI-generated code:** [Approximately X%]
+**Percentage of AI-generated code:** ~70% (Assistance with boilerplate, logic integration, and styles)
 
 **Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
+- Creative direction and feature requirements.
+- Core UI layout decisions.
+- Project scope and logic validation.
 
 *Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
 
 ---
 
-## Team Contributions
-
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+- [Karthu Rajan]: Backend development, API integration, and Disaster Reporting logic.
+- [Team Member 2]: UI/UX Design and Frontend Implementation.
 
 ---
 
 ## License
 
-This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
-
-**Common License Options:**
-- MIT License (Permissive, widely used)
-- Apache 2.0 (Permissive with patent grant)
-- GPL v3 (Copyleft, requires derivative works to be open source)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 

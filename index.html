@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReliefNet - Command Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>ReliefNet</span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#" class="active" data-target="home">Home</a>
+                <a href="#" data-target="dashboard">Dashboard</a>
+                <a href="#" data-target="report">Report Incident</a>
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="openLogin()">Login</button>
+                <button class="btn btn-primary alert-btn" onclick="triggerSOS()" id="sos-btn"><i
+                        class="fas fa-exclamation-triangle"></i> SOS</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- Home View -->
+        <section id="home-view" class="view active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Coordinate. Respond. <span class="highlight">Save Lives.</span></h1>
+                    <p>A unified command center for real-time disaster management, connecting citizens, NGOs, and
+                        authorities instantly.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large" onclick="switchView('report')">Report an
+                            Emergency</button>
+                        <button class="btn btn-secondary btn-large" onclick="switchView('dashboard')">View Live
+                            Map</button>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card glass">
+                        <i class="fas fa-users"></i>
+                        <h3 id="stat-volunteers">0</h3>
+                        <p>Active Volunteers</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3 id="stat-camps">0</h3>
+                        <p>Relief Camps</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <i class="fas fa-box-open"></i>
+                        <h3 id="stat-resources">0</h3>
+                        <p>Resources Deployed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard View -->
+        <section id="dashboard-view" class="view">
+            <div class="dashboard-layout">
+                <!-- Sidebar -->
+                <aside class="sidebar glass">
+                    <div class="user-profile">
+                        <div class="avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="user-info">
+                            <h4>Admin Center</h4>
+                            <span class="role-badge">Gov Authority</span>
+                        </div>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="active" onclick="switchDashboardTab('overview')"><i class="fas fa-chart-line"></i>
+                            Overview</li>
+                        <li onclick="switchDashboardTab('incidents')"><i class="fas fa-clipboard-list"></i> Incidents
+                        </li>
+                        <li onclick="switchDashboardTab('inventory')"><i class="fas fa-boxes"></i> Inventory</li>
+                        <li onclick="switchDashboardTab('volunteers')"><i class="fas fa-users-cog"></i> Volunteers</li>
+                        <li onclick="switchDashboardTab('shelters')"><i class="fas fa-house-user"></i> Shelters</li>
+                    </ul>
+                </aside>
+
+                <!-- Dashboard Content Area -->
+                <div class="dashboard-main">
+                    <div id="dash-header" class="dash-module-header">
+                        <h2 id="dash-title">Command Overview</h2>
+                        <div class="dash-actions">
+                            <span id="last-updated" class="timestamp-label">Syncing...</span>
+                            <button class="btn btn-sm btn-outline" onclick="refreshDashboardData()"><i
+                                    class="fas fa-sync-alt"></i> Refresh Data</button>
+                        </div>
+                    </div>
+
+                    <!-- Module: Overview -->
+                    <div id="module-overview" class="dash-module active">
+                        <div class="kpi-grid">
+                            <div class="kpi-card glass alert">
+                                <i class="fas fa-fire-alt"></i>
+                                <div>
+                                    <h4>Critical Alerts</h4>
+                                    <h2 id="kpi-critical">0</h2>
+                                </div>
+                            </div>
+                            <div class="kpi-card glass warning">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>
+                                    <h4>Active Incidents</h4>
+                                    <h2 id="kpi-active">0</h2>
+                                </div>
+                            </div>
+                            <div class="kpi-card glass success">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Resolved (24h)</h4>
+                                    <h2 id="kpi-resolved">0</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-content-grid">
+                            <div class="map-container glass">
+                                <div class="map-header">
+                                    <h3>Incident Heatmap</h3>
+                                </div>
+                                <div class="mock-map">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <p>Live Geospatial Data Active</p>
+                                    <div class="pulse-marker" style="top: 30%; left: 40%;"></div>
+                                    <div class="pulse-marker" style="top: 60%; left: 70%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="recent-reports glass">
+                                <h3>Active Emergency Feed</h3>
+                                <ul class="report-list" id="report-list-mini">
+                                    <p class="loading-text">Fetching live feed...</p>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Module: Incidents -->
+                    <div id="module-incidents" class="dash-module">
+                        <div class="table-container glass">
+                            <table id="incidents-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>Type</th>
+                                        <th>Location</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="incidents-tbody">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Module: Inventory -->
+                    <div id="module-inventory" class="dash-module">
+                        <div class="inventory-grid" id="inventory-grid">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </div>
+
+                    <!-- Module: Volunteers -->
+                    <div id="module-volunteers" class="dash-module">
+                        <div class="volunteer-list" id="volunteer-list">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </div>
+
+                    <!-- Module: Shelters -->
+                    <div id="module-shelters" class="dash-module">
+                        <div class="shelter-grid" id="shelter-grid">
+                            <!-- Dynamic Content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Incident View -->
+        <section id="report-view" class="view">
+            <div class="report-container glass">
+                <h2><i class="fas fa-bullhorn"></i> Report an Emergency</h2>
+                <p>Provide accurate details to help rescue teams respond efficiently.</p>
+
+                <form id="incident-form" onsubmit="event.preventDefault(); submitReport();">
+                    <div class="form-group">
+                        <label>Incident Type</label>
+                        <select id="inc-type" required>
+                            <option value="">Select Type...</option>
+                            <option value="flood">Flood</option>
+                            <option value="fire">Fire</option>
+                            <option value="earthquake">Earthquake</option>
+                            <option value="medical">Medical Emergency</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Severity Level</label>
+                        <div class="severity-options">
+                            <label class="severity-radio low"><input type="radio" name="severity" value="low">
+                                Low</label>
+                            <label class="severity-radio medium"><input type="radio" name="severity" value="medium">
+                                Medium</label>
+                            <label class="severity-radio high"><input type="radio" name="severity" value="high" checked>
+                                High</label>
+                            <label class="severity-radio critical"><input type="radio" name="severity" value="critical">
+                                Critical</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location (Auto-detected)</label>
+                        <div class="location-input">
+                            <input type="text" placeholder="Fetching GPS coordinates..." disabled id="location-field">
+                            <button type="button" class="btn btn-icon" onclick="getLocation()"><i
+                                    class="fas fa-crosshairs"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="inc-desc" rows="4"
+                            placeholder="Describe the situation, number of people affected, etc." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Media (Optional)</label>
+                        <div class="file-upload" onclick="document.getElementById('file-input').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p id="file-name">Click to upload images or videos</p>
+                            <input type="file" id="file-input" hidden onchange="handleFileSelect(this)">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Submit Report Data</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-btn" onclick="closeLogin()">&times;</span>
+            <h2>Sign In</h2>
+            <form>
+                <div class="form-group">
+                    <label>Email ID</label>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter password" required>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select>
+                        <option>Admin / Authority</option>
+                        <option>NGO / Volunteer</option>
+                        <option>Citizen</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p class="auth-link">Don't have an account? <a href="#">Register</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- SOS Fullscreen Overlay -->
+    <div id="sos-overlay" class="sos-overlay">
+        <div class="sos-alert-box">
+            <i class="fas fa-broadcast-tower"></i>
+            <h2>EMERGENCY SOS ACTIVATED</h2>
+            <p id="sos-status">Fetching location and transmitting critical alert...</p>
+        </div>
+    </div>
+
+    <!-- SOS Fullscreen Overlay -->
+    <div id="sos-overlay" class="sos-overlay">
+        <div class="sos-alert-box">
+            <i class="fas fa-broadcast-tower"></i>
+            <h2>EMERGENCY SOS ACTIVATED</h2>
+            <p id="sos-status">Fetching location and transmitting critical alert...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
