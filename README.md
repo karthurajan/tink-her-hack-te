@@ -85,25 +85,25 @@ Access the application at `http://localhost:5000`
 
 #### Screenshots (Add at least 3)
 
-![Home View]()
+![Home View](l.png)
 *Hero section with real-time statistics and quick actions*
 
-![Dashboard](docs/dashboard.png)
+![Dashboard](h.png)
 *Command center showing incident logs and resource status*
 
-![Report Incident](docs/report.png)
+![Report Incident](a.png)
 *Emergency reporting form with geolocation support*
 
 #### Diagrams
 
 **System Architecture:**
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram]
 *user registration -> disaster reporting -> resource management -> volunteer assignment -> status tracking*
 
 **Application Workflow:**
 
-![Workflow](docs/workflow.png)
+![Workflow]
 *Citizen reports incident -> System logs in DB -> Authority assigns volunteer -> Status update*
 
 ---
@@ -168,20 +168,16 @@ Access the application at `http://localhost:5000`
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
+[https://drive.google.com/file/d/1NP8sPCdGmBrCSAAq85tyiIobZjR4Qd78/view?usp=sharing]
 
 *ReliefNet feature walkthrough including the command center dashboard, incident reporting flow, and the emergency SOS system.*
-
-### Additional Demos
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
-
 ---
 
 ## AI Tools Used (Optional - For Transparency Bonus)
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** sqlite
+**Tool Used:** Chatgpt ,Claude
 
 **Purpose:** 
 - Architectural planning and backend/frontend integration assistance.
@@ -205,13 +201,11 @@ If you used AI tools during development, document them here for transparency:
 ---
 
 - [Karthu Rajan]: Backend development, API integration, and Disaster Reporting logic.
-- [Team Member 2]: UI/UX Design and Frontend Implementation.
+
 
 ---
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
