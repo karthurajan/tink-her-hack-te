@@ -85,7 +85,7 @@ Access the application at `http://localhost:5000`
 
 #### Screenshots (Add at least 3)
 
-![Home View](./img.png)
+![Home View]()
 *Hero section with real-time statistics and quick actions*
 
 ![Dashboard](docs/dashboard.png)
